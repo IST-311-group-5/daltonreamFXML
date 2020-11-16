@@ -15,6 +15,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
@@ -77,6 +80,29 @@ public class FXMLDocumentController implements Initializable {
       
     @FXML
     private Button calsAndID;
+    
+    
+    @FXML
+    private Button search;
+    
+    @FXML
+    private TextField enteredMealDesc;
+        
+    @FXML
+    private TableView<Mealmodel> table; //Dylans vid
+    
+     @FXML
+    private TableColumn<Mealmodel, Integer> mealID;//^^
+
+    @FXML
+    private TableColumn<Mealmodel, String> dietary; //^^
+
+    @FXML
+    private TableColumn<Mealmodel, Integer> caloric; // ^^
+
+    @FXML
+    private TableColumn<Mealmodel, String> mealDesc; //^^
+
      
     @FXML
     void createMeal(ActionEvent event) { // from demo
@@ -321,8 +347,21 @@ public class FXMLDocumentController implements Initializable {
 
        
     }
+    @FXML
+    void search(ActionEvent event) {
+        System.out.println("Ouch, you clicked me");
+    }
 
     @FXML
+    void table(ActionEvent event) {
+
+    }
+    @FXML
+    void enteredMealDesc(ActionEvent event) {
+
+    }
+
+ @FXML
     void initialize() {
         assert button != null : "fx:id=\"button\" was not injected: check your FXML file 'FXMLDocument.fxml'.";
         assert label != null : "fx:id=\"label\" was not injected: check your FXML file 'FXMLDocument.fxml'.";
@@ -332,6 +371,13 @@ public class FXMLDocumentController implements Initializable {
         assert deleteMeal != null : "fx:id=\"deleteMeal\" was not injected: check your FXML file 'FXMLDocument.fxml'.";
         assert mealAndRestr != null : "fx:id=\"mealAndRestr\" was not injected: check your FXML file 'FXMLDocument.fxml'.";
         assert calsAndID != null : "fx:id=\"calsAndID\" was not injected: check your FXML file 'FXMLDocument.fxml'.";
+        assert table != null : "fx:id=\"table\" was not injected: check your FXML file 'FXMLDocument.fxml'.";
+        assert mealID != null : "fx:id=\"mealID\" was not injected: check your FXML file 'FXMLDocument.fxml'.";
+        assert dietary != null : "fx:id=\"dietary\" was not injected: check your FXML file 'FXMLDocument.fxml'.";
+        assert caloric != null : "fx:id=\"caloric\" was not injected: check your FXML file 'FXMLDocument.fxml'.";
+        assert mealDesc != null : "fx:id=\"mealDesc\" was not injected: check your FXML file 'FXMLDocument.fxml'.";
+        assert enteredMealDesc != null : "fx:id=\"enteredMealDesc\" was not injected: check your FXML file 'FXMLDocument.fxml'.";
+        assert search != null : "fx:id=\"search\" was not injected: check your FXML file 'FXMLDocument.fxml'.";
 
     }
 
