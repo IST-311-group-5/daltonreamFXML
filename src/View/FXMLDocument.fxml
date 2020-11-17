@@ -19,7 +19,7 @@
       <Button fx:id="deleteMeal" layoutX="24.0" layoutY="97.0" mnemonicParsing="false" onAction="#deleteMeal" text="Delete" />
       <Button fx:id="mealAndRestr" layoutX="195.0" layoutY="30.0" mnemonicParsing="false" onAction="#mealAndRestr" text="Get by Meal Desc and  Restr" />
       <Button fx:id="calsAndID" layoutX="200.0" layoutY="97.0" mnemonicParsing="false" onAction="#calsAndID" text="Get by ID and Calories" />
-      <TableView fx:id="table" layoutX="38.0" layoutY="240.0" onSort="#table" prefHeight="200.0" prefWidth="417.0">
+      <TableView fx:id="table" editable="true" layoutX="38.0" layoutY="240.0"  prefHeight="200.0" prefWidth="417.0">
         <columns>
           <TableColumn fx:id="mealID" prefWidth="43.0" text="ID" />
           <TableColumn fx:id="dietary" prefWidth="127.0" text="Dietary Restirictions " />
@@ -33,7 +33,7 @@
          </font>
       </Text>
       <Text layoutX="42.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="By Meal Descriptions" />
-      <TextField fx:id="enteredMealDesc" layoutX="166.0" layoutY="205.0" onAction="#enteredMealDesc" promptText="Enter Meal Descriptions" />
+      <TextField fx:id="enteredMealDesc" layoutX="166.0" layoutY="205.0" promptText="Enter Meal Descriptions" />
       <Button fx:id="search" layoutX="357.0" layoutY="205.0" onAction="#search" text="Search" />
     </children>
 </AnchorPane>

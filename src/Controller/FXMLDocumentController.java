@@ -10,14 +10,20 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
@@ -49,9 +55,19 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) { // from demo
-        // loading data from database
-        //database reference: "IntroJavaFXPU"
+       
         manager = (EntityManager) Persistence.createEntityManagerFactory("DaltonReamFXMLPU").createEntityManager();
+        //borrowed from github 
+        mealID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        
+        dietary.setCellValueFactory(new PropertyValueFactory<>("dietrayrestictions"));
+
+        caloric.setCellValueFactory(new PropertyValueFactory<>("caloricintake"));
+        
+        mealDesc.setCellValueFactory(new PropertyValueFactory<>("mealdescription"));
+
+        
+        table.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
 
     @FXML
@@ -103,6 +119,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<Mealmodel, String> mealDesc; //^^
 
+    private ObservableList<Mealmodel> mealData;
      
     @FXML
     void createMeal(ActionEvent event) { // from demo
@@ -347,18 +364,44 @@ public class FXMLDocumentController implements Initializable {
 
        
     }
+        
+        //----------------- QUIZ 4 -----------------
     @FXML
     void search(ActionEvent event) {
         System.out.println("Ouch, you clicked me");
+        System.out.println("clicked");
+
+        String name = enteredMealDesc.getText();
+
+        List<Mealmodel> meal = readByMeal(name);
+
+        if (meal == null || meal.isEmpty()) {
+
+            // alert from github
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Sorry Boss");
+            alert.setHeaderText("There is no meal with that description");
+            alert.setContentText("No Meal");
+            alert.showAndWait(); 
+        } else {
+
+            setTableData(meal);
+        }
     }
+    
+    
+    public void setTableData(List<Mealmodel> meal) {
+   
+        mealData = FXCollections.observableArrayList();
 
-    @FXML
-    void table(ActionEvent event) {
+       //from github
+        meal.forEach(s -> {
+            mealData.add(s);
+        });
 
-    }
-    @FXML
-    void enteredMealDesc(ActionEvent event) {
-
+        
+        table.setItems(mealData);
+        table.refresh();
     }
 
  @FXML
