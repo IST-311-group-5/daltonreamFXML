@@ -119,7 +119,11 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<Mealmodel, String> mealDesc; //^^
 
+    @FXML
     private ObservableList<Mealmodel> mealData;
+    
+    @FXML
+    private Button advancedSearch;
      
     @FXML
     void createMeal(ActionEvent event) { // from demo
@@ -403,6 +407,43 @@ public class FXMLDocumentController implements Initializable {
         table.setItems(mealData);
         table.refresh();
     }
+    
+        @FXML
+    void advancedSearch(ActionEvent event) {
+  System.out.println("clicked");
+
+        String name = enteredMealDesc.getText();
+
+        List<Mealmodel> meals = readByMealAdvanced(name);
+
+
+        if (meals == null || meals.isEmpty()) {
+
+            // alert and from github 
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Sorry Boss");
+            alert.setHeaderText("There is no meal with that description");
+            alert.setContentText("No Meal");
+            alert.showAndWait(); 
+        } else {
+            // setting table data
+            setTableData(meals);
+        }
+    }
+     public List<Mealmodel> readByMealAdvanced(String enteredMeal) {
+        Query query = manager.createNamedQuery("Mealmodel.findByNameAdvanced");
+
+        // setting query parameter
+        query.setParameter("mealdescription", enteredMeal);
+
+        // execute query
+        List<Mealmodel> meals = query.getResultList();
+        for (Mealmodel meal : meals) {
+            System.out.println(meal.getId() + " " + meal.getDietrayrestictions() + " " + meal.getCaloricintake() + " " + meal.getMealdescription());
+        }
+
+        return meals;
+    }
 
  @FXML
     void initialize() {
@@ -421,6 +462,8 @@ public class FXMLDocumentController implements Initializable {
         assert mealDesc != null : "fx:id=\"mealDesc\" was not injected: check your FXML file 'FXMLDocument.fxml'.";
         assert enteredMealDesc != null : "fx:id=\"enteredMealDesc\" was not injected: check your FXML file 'FXMLDocument.fxml'.";
         assert search != null : "fx:id=\"search\" was not injected: check your FXML file 'FXMLDocument.fxml'.";
+        assert advancedSearch != null : "fx:id=\"advancedSearch\" was not injected: check your FXML file 'FXMLDocument.fxml'.";
+
 
     }
 

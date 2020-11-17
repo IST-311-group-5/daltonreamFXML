@@ -29,7 +29,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Mealmodel.findByCaloricintake", query = "SELECT m FROM Mealmodel m WHERE m.caloricintake = :caloricintake")
     , @NamedQuery(name = "Mealmodel.findByMealdescription", query = "SELECT m FROM Mealmodel m WHERE m.mealdescription = :mealdescription")
     , @NamedQuery(name = "Mealmodel.findByDietRestAndMealDesc", query = "SELECT m FROM Mealmodel m WHERE m.dietrayrestictions = :dietrayrestictions and m.mealdescription = :mealdescription")
-    , @NamedQuery(name = "Mealmodel.findByIDAndCaloricIntake", query = "SELECT m FROM Mealmodel m WHERE m.id = :id and m.caloricintake = :caloricintake")})
+    , @NamedQuery(name = "Mealmodel.findByIDAndCaloricIntake", query = "SELECT m FROM Mealmodel m WHERE m.id = :id and m.caloricintake = :caloricintake")
+    , @NamedQuery(name = "Mealmodel.findByNameAdvanced", query = "SELECT s FROM Mealmodel s WHERE  LOWER(s.mealdescription) LIKE  CONCAT('%', LOWER(:mealdescription), '%')")}) //from GitHub
 public class Mealmodel implements Serializable {
 
     private static final long serialVersionUID = 1L;
