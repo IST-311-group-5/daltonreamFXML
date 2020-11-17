@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="541.0" prefWidth="493.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="557.0" prefWidth="493.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.FXMLDocumentController">
     <children>
         <Button fx:id="button" layoutX="391.0" layoutY="97.0" onAction="#handleButtonAction" text="Click Me!" />
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
@@ -21,8 +21,8 @@
       <Button fx:id="calsAndID" layoutX="200.0" layoutY="97.0" mnemonicParsing="false" onAction="#calsAndID" text="Get by ID and Calories" />
       <TableView fx:id="table" layoutX="38.0" layoutY="279.0" prefHeight="234.0" prefWidth="417.0">
         <columns>
-          <TableColumn fx:id="mealID" prefWidth="43.0" text="ID" />
-          <TableColumn fx:id="dietary" prefWidth="127.0" text="Dietary Restirictions " />
+          <TableColumn fx:id="mealID" prefWidth="51.0" text="ID" />
+          <TableColumn fx:id="dietary" prefWidth="119.0" text="Dietary Restirictions " />
             <TableColumn fx:id="caloric" prefWidth="110.0" text="Caloric Intake" />
             <TableColumn fx:id="mealDesc" minWidth="0.0" prefWidth="122.0" text="Meal Descriptions" />
         </columns>
@@ -36,5 +36,7 @@
       <TextField fx:id="enteredMealDesc" layoutX="166.0" layoutY="205.0" promptText="Enter Meal Descriptions" />
       <Button fx:id="search" layoutX="357.0" layoutY="205.0" onAction="#search" text="Search" />
       <Button fx:id="advancedSearch" layoutX="324.0" layoutY="244.0" onAction="#advancedSearch" text="Advanced Search" />
+      <Button fx:id="ShowDetails" layoutX="365.0" layoutY="519.0" onAction="#ShowDetails" text="Show Details" />
+      <Button fx:id="ShowDetailsInPlace" layoutX="214.0" layoutY="520.0" onAction="#ShowDetailsInPlace" text="Show Details In Place" />
     </children>
 </AnchorPane>

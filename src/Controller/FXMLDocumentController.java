@@ -6,6 +6,7 @@ package Controller;
  * and open the template in the editor.
  */
 import Model.Mealmodel;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -14,7 +15,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -24,6 +28,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
@@ -124,6 +129,13 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private Button advancedSearch;
+    
+    @FXML
+    private Button ShowDetails;
+
+    @FXML
+    private Button ShowDetailsInPlace;
+
      
     @FXML
     void createMeal(ActionEvent event) { // from demo
@@ -410,7 +422,7 @@ public class FXMLDocumentController implements Initializable {
     
         @FXML
     void advancedSearch(ActionEvent event) {
-  System.out.println("clicked");
+        System.out.println("clicked");
 
         String name = enteredMealDesc.getText();
 
@@ -430,6 +442,7 @@ public class FXMLDocumentController implements Initializable {
             setTableData(meals);
         }
     }
+    
      public List<Mealmodel> readByMealAdvanced(String enteredMeal) {
         Query query = manager.createNamedQuery("Mealmodel.findByNameAdvanced");
 
@@ -443,6 +456,35 @@ public class FXMLDocumentController implements Initializable {
         }
 
         return meals;
+    }
+     
+     
+    @FXML
+    void ShowDetails(ActionEvent event) throws IOException {
+        System.out.println("clicked");
+
+        
+        Mealmodel meal = table.getSelectionModel().getSelectedItem();
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/DetailedModelView.fxml"));
+
+        Parent detailedModelView = loader.load();
+
+        Scene tableViewScene = new Scene(detailedModelView);
+
+        DetailedModelViewController detailedControlled = loader.getController();
+
+
+        detailedControlled.initData(meal);
+
+        Stage stage = new Stage();
+        stage.setScene(tableViewScene);
+        stage.show();
+    }
+
+    @FXML
+    void ShowDetailsInPlace(ActionEvent event) {
+
     }
 
  @FXML
@@ -463,6 +505,8 @@ public class FXMLDocumentController implements Initializable {
         assert enteredMealDesc != null : "fx:id=\"enteredMealDesc\" was not injected: check your FXML file 'FXMLDocument.fxml'.";
         assert search != null : "fx:id=\"search\" was not injected: check your FXML file 'FXMLDocument.fxml'.";
         assert advancedSearch != null : "fx:id=\"advancedSearch\" was not injected: check your FXML file 'FXMLDocument.fxml'.";
+        assert ShowDetails != null : "fx:id=\"ShowDetails\" was not injected: check your FXML file 'FXMLDocument.fxml'.";
+        assert ShowDetailsInPlace != null : "fx:id=\"ShowDetailsInPlace\" was not injected: check your FXML file 'FXMLDocument.fxml'.";
 
 
     }
