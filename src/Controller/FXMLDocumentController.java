@@ -1,9 +1,9 @@
 package Controller;
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Dalton Ream
+ * Quiz 4 
+ * IST 311
  */
 import Model.Mealmodel;
 import java.io.IOException;
@@ -439,18 +439,18 @@ public class FXMLDocumentController implements Initializable {
             alert.setContentText("No Meal");
             alert.showAndWait(); 
         } else {
-            // setting table data
+            
             setTableData(meals);
         }
     }
     
      public List<Mealmodel> readByMealAdvanced(String enteredMeal) {
+         //calls the query 
         Query query = manager.createNamedQuery("Mealmodel.findByNameAdvanced");
 
-        // setting query parameter
+        // sets parameters
         query.setParameter("mealdescription", enteredMeal);
 
-        // execute query
         List<Mealmodel> meals = query.getResultList();
         for (Mealmodel meal : meals) {
             System.out.println(meal.getId() + " " + meal.getDietrayrestictions() + " " + meal.getCaloricintake() + " " + meal.getMealdescription());
@@ -462,6 +462,8 @@ public class FXMLDocumentController implements Initializable {
      
     @FXML
     void ShowDetails(ActionEvent event) throws IOException {
+        //opens the other view file and loads the stage in a new window
+
         System.out.println("clicked");
 
         
@@ -485,6 +487,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     void ShowDetailsInPlace(ActionEvent event) throws IOException {
+        //opens the other view file and loads the stage
          System.out.println("clicked");
 
         

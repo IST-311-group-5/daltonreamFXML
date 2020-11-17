@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Dalton Ream
+ * Quiz 4 
+ * IST 311
  */
 package daltonreamFXML;
 
